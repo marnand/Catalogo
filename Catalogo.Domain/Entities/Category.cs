@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Catalogo.Core.Exceptions;
+using Catalogo.Domain.Validators;
 
 namespace Catalogo.Domain.Entities
 {
-    public class Category
+    public class Category : BaseEntity
     {
         public Category(string name, Product product, string imageURL, 
                         DateTime createdAt, DateTime? updatedAt = null, int id = 0)
@@ -14,6 +16,9 @@ namespace Catalogo.Domain.Entities
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.Id = id;
+            _errors = new List<string>();
+
+            Validate();
         }
 
         public int Id { get; private set; }
@@ -28,5 +33,27 @@ namespace Catalogo.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         
         public DateTime? UpdatedAt { get; private set; }
+
+        #region Methods
+        
+        public override bool Validate()
+        {
+            var validator = new CategoryValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach(var error in validation.Errors)
+                {
+                    _errors.Add(error.ErrorMessage);
+                }
+
+                throw new DomainException("Alguns campos estão inválidos.", _errors);
+            }
+
+            return true;
+        }
+        
+        #endregion
     }
 }
