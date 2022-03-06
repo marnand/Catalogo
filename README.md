@@ -1,5 +1,19 @@
-# Catalogo
-Cadastro de produtos por categoria utilizando estrutura DDD. <br />
+# Catalogo - produtos e categorias
 
-Desenvolvido com .NET 5 no Visual Studio Community 2019. 
-<p> Não foi utilizado comandos via CLI, neste projeto optei pela uso das ferramentas disponíveis no Visual Studio Community 2019 afim de aumentar a produtividade no ambiente de desenvolvimento integrado(IDE) da Microsoft amplamente utilizado no mercado de trabalho. </p>
+## 📷 Screenshot
+<!-- ![alt text](image-link) -->
+
+## 📋 Descrição do projeto
+API de produtos agrupados por categoria. Utilizo os conceitos do SOLID e CLEAN CODE para a estrutura da API 
+e implemento modelagem de Domínios Ricos.
+
+## 💻 Tecnologias utilizadas
+- .NET versão 5.0.405
+- Fluent Validation versão 10.3.6
+
+## 📈 Status do projeto
+:construction: Em contrução
+<!-- ✅ Concluído -->
+
+<!-- ## 🚀 Links 
+- Site em produção: [text](Link) -->
