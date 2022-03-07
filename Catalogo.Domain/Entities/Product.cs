@@ -7,6 +7,9 @@ namespace Catalogo.Domain.Entities
 {
     public class Product : BaseEntity
     {
+        public Product()
+        { }
+
         public Product(string name, decimal price, int stock, string description, 
                         string imageURL, int categoryId, DateTime createdAt, DateTime? updatedAt = null, int id = 0)
         {
@@ -38,10 +41,6 @@ namespace Catalogo.Domain.Entities
         public string ImageURL { get; private set; } 
         
         public int CategoryId { get; private set; }
-        
-        public DateTime CreatedAt { get; private set; }
-        
-        public DateTime? UpdatedAt { get; private set; }
 
         #region Methods
         
