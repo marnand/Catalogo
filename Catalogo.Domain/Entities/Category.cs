@@ -10,8 +10,8 @@ namespace Catalogo.Domain.Entities
         public Category()
         { }
 
-        public Category(string name, Product product, string imageURL, 
-                        DateTime createdAt, DateTime? updatedAt = null, int id = 0)
+        public Category(string name, string imageURL, DateTime createdAt, 
+                        DateTime? updatedAt = null, int id = 0)
         {
             this.Name = name;
             this.ImageURL = imageURL;
@@ -28,7 +28,7 @@ namespace Catalogo.Domain.Entities
         public string Name { get; private set; }
         
         // add checkbox no front: "Não incluir imagem". Caso não incluir inserir uma imagem aleatória unsplash
-        public string ImageURL { get; private set; }     
+        public string ImageURL { get; private set; }
 
         #region Methods
         

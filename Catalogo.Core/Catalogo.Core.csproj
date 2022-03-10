@@ -1,8 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IoC\**" />
+    <EmbeddedResource Remove="IoC\**" />
+    <None Remove="IoC\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
