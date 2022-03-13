@@ -6,6 +6,8 @@ namespace Catalogo.Application.Interfaces
 {
     public interface ICategoryService
     {
+        Task<CategoryDTO> Create(CategoryDTO categoryDTO);
+
         Task<List<CategoryDTO>> Get();
     }
 }

@@ -16,17 +16,20 @@ namespace Catalogo.Infrastructure.Repositories
             _context = context;
         }
 
-        public Task<T> Create(T obj)
+        public virtual async Task<T> Create(T obj)
+        {
+            _context.Add(obj);
+            await _context.SaveChangesAsync();
+
+            return obj;
+        }
+
+        public virtual async Task<T> Update(T obj)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<T> Update(T obj)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Remove(long id)
+        public virtual async Task Remove(long id)
         {
             throw new System.NotImplementedException();
         }
@@ -36,7 +39,7 @@ namespace Catalogo.Infrastructure.Repositories
             return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public Task<T> Get(long id)
+        public virtual async Task<T> Get(long id)
         {
             throw new System.NotImplementedException();
         }

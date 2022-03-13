@@ -5,6 +5,12 @@
         public CategoryDTO()
         { }
 
+        public CategoryDTO(string name, string imageURL)
+        {
+            Name = name;
+            ImageURL = imageURL;
+        }
+        
         public CategoryDTO(int id, string name, string imageURL)
         {
             Id = id;
