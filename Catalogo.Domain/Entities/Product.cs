@@ -13,21 +13,19 @@ namespace Catalogo.Domain.Entities
         public Product(string name, decimal price, int stock, string description, 
                         string imageURL, int categoryId, DateTime createdAt, DateTime? updatedAt = null, int id = 0)
         {
-            this.Name = name;
-            this.Price = price;
-            this.Stock = stock;
-            this.Description = description;
-            this.ImageURL = imageURL;
-            this.CategoryId = categoryId;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.Id = id;
+            Name = name;
+            Price = price;
+            Stock = stock;
+            Description = description;
+            ImageURL = imageURL;
+            CategoryId = categoryId;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Id = id;
             _errors = new List<string>();
 
             Validate();
-        }
-        
-        public int Id { get; private set; }
+        }      
         
         public string Name { get; private set; }
         

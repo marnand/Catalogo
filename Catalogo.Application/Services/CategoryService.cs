@@ -5,6 +5,7 @@ using Catalogo.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using Catalogo.Core.Exceptions;
 
 namespace Catalogo.Application.Services
 {
@@ -29,11 +30,43 @@ namespace Catalogo.Application.Services
 
             return categoryDTOCreated;
         }
-        
+
+        public async Task<CategoryDTO> Update(CategoryDTO categoryDTO)
+        {
+            var categoryExists = await _categoryRepository.Get(categoryDTO.Id);
+
+            if (categoryExists == null)
+            {
+                throw new DomainException("Esta categoria não existe");
+            }
+
+            DateTime updated = DateTime.Now;
+            var category = new Category(categoryDTO.Name, categoryDTO.ImageURL, (DateTime)categoryExists.CreatedAt, updated, categoryDTO.Id);
+            category.Validate();
+
+            var categoryUpdated = await _categoryRepository.Update(category);
+
+            var categoryDTOUpdated = new CategoryDTO(categoryUpdated.Id, categoryUpdated.Name, categoryUpdated.ImageURL);
+
+            return categoryDTOUpdated;
+        }
+
+        public async Task Remove(int id)
+        {
+            var categoryExists = await _categoryRepository.Get(id);
+
+            if (categoryExists == null)
+            {
+                throw new DomainException("Esta categoria não existe");
+            }
+
+            await _categoryRepository.Remove(categoryExists.Id);
+        }
+
         public async Task<List<CategoryDTO>> Get()
         {
             var categories = await _categoryRepository.Get();
-            List<CategoryDTO> categoriesDTO = null; 
+            var categoriesDTO = new List<CategoryDTO>(); 
 
             foreach (var category in categories)
             {
@@ -42,6 +75,20 @@ namespace Catalogo.Application.Services
             }
 
             return categoriesDTO;
+        }
+
+        public async Task<CategoryDTO> Get(int id)
+        {
+            Category categoryExists = await _categoryRepository.Get(id);
+
+            if (categoryExists == null)
+            {
+                throw new DomainException("Esta categoria não existe");
+            }
+
+            var categoryDTO = new CategoryDTO(categoryExists.Id, categoryExists.Name, categoryExists.ImageURL);
+
+            return categoryDTO;
         }
     }
 }

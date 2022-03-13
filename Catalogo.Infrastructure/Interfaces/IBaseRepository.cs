@@ -10,9 +10,9 @@ namespace Catalogo.Infrastructure.Interfaces
 
         Task<T> Update(T obj);
         
-        Task Remove(long id);
+        Task Remove(int id);
         
-        Task<T> Get(long id);
+        Task<T> Get(int id);
         
         Task<List<T>> Get();
     }

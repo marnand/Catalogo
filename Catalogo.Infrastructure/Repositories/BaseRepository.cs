@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Catalogo.Infrastructure.Context;
 using Catalogo.Infrastructure.Interfaces;
 using Catalogo.Domain.Entities;
+using System.Linq;
 
 namespace Catalogo.Infrastructure.Repositories
 {
@@ -26,12 +27,21 @@ namespace Catalogo.Infrastructure.Repositories
 
         public virtual async Task<T> Update(T obj)
         {
-            throw new System.NotImplementedException();
+            _context.Update(obj);
+            await _context.SaveChangesAsync();
+
+            return obj;
         }
 
-        public virtual async Task Remove(long id)
+        public virtual async Task Remove(int id)
         {
-            throw new System.NotImplementedException();
+            var obj = await Get(id);
+
+            if (obj != null)
+            {
+                _context.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public virtual async Task<List<T>> Get()
@@ -39,9 +49,11 @@ namespace Catalogo.Infrastructure.Repositories
             return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public virtual async Task<T> Get(long id)
+        public virtual async Task<T> Get(int id)
         {
-            throw new System.NotImplementedException();
+            var obj = await _context.Set<T>().AsNoTracking().Where(x => x.Id == id).ToListAsync();
+
+            return obj.FirstOrDefault();
         }
     }
 }

@@ -8,6 +8,12 @@ namespace Catalogo.Application.Interfaces
     {
         Task<CategoryDTO> Create(CategoryDTO categoryDTO);
 
+        Task<CategoryDTO> Update(CategoryDTO categoryDTO);
+
+        Task Remove(int Id);
+
         Task<List<CategoryDTO>> Get();
+
+        Task<CategoryDTO> Get(int Id);
     }
 }

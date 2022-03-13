@@ -13,17 +13,15 @@ namespace Catalogo.Domain.Entities
         public Category(string name, string imageURL, DateTime createdAt, 
                         DateTime? updatedAt = null, int id = 0)
         {
-            this.Name = name;
-            this.ImageURL = imageURL;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.Id = id;
+            Name = name;
+            ImageURL = imageURL;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Id = id;
             _errors = new List<string>();
 
             Validate();
         }
-
-        public int Id { get; private set; }
         
         public string Name { get; private set; }
         
